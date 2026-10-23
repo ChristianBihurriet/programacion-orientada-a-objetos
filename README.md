@@ -89,9 +89,11 @@ Alumno ana = new Alumno();          // instanciación
 Dos variables pueden apuntar al mismo objeto. En ese caso, una modificación realizada mediante una referencia se observa mediante la otra. Dos objetos distintos también pueden tener el mismo contenido: comparten igualdad lógica, pero no identidad. `==` compara referencias; `equals` puede definir igualdad por contenido (se estudia en el tema 9).
 
 ```java
-Persona primera = new Persona("Ana");
-Persona alias = primera;              // mismo objeto
-Persona otraAna = new Persona("Ana"); // objeto distinto
+Persona primera = new Persona();
+primera.nombre = "Ana";
+Persona alias = primera;               // mismo objeto
+Persona otraAna = new Persona();       // objeto distinto
+otraAna.nombre = "Ana";
 ```
 
 ### ¿Para qué sirve?
@@ -254,6 +256,8 @@ Java representa todas las relaciones «tiene un» mediante referencias. El lengu
 ### Multiplicidad
 
 La multiplicidad expresa cuántas instancias participan: `1`, `0..1`, `*` o `1..*`. Una referencia suele representar uno a uno; una colección, uno a muchos.
+
+Desde este tema se utilizará `List` como herramienta de apoyo para representar relaciones uno-a-muchos. Por ahora basta con crear una `ArrayList`, añadir elementos y recorrerlos con `for-each`; las operaciones de colecciones, la igualdad lógica y el borrado seguro se estudian en detalle en el tema 9.
 
 ```mermaid
 classDiagram
