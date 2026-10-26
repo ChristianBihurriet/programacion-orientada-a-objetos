@@ -36,5 +36,21 @@ public class Ejemplo01CuentaSegura {
         cuenta.ingresar(20);
         System.out.println(cuenta.getTitular() + ": " + cuenta.getSaldo());
         System.out.println("Retirada de 150: " + cuenta.retirar(150));
+        System.out.println("Saldo tras la retirada rechazada: " + cuenta.getSaldo());
+
+        // No existe setSaldo(): el saldo solo cambia mediante operaciones controladas.
+        try {
+            cuenta.ingresar(0);
+        } catch (IllegalArgumentException error) {
+            System.out.println("Ingreso rechazado: " + error.getMessage());
+        }
+
+        try {
+            new Cuenta("", -10);
+        } catch (IllegalArgumentException error) {
+            System.out.println("Construcción rechazada: " + error.getMessage());
+        }
+
+        System.out.println("Saldo final: " + cuenta.getSaldo());
     }
 }

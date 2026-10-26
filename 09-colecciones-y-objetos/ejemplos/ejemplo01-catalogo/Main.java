@@ -11,7 +11,13 @@ public class Main {
         for (Producto producto : catalogo) System.out.println(producto.getNombre());
         System.out.println("Contiene A1: " + catalogo.contains(new Producto("A1", "Otro nombre")));
 
-        catalogo.removeIf(producto -> producto.getNombre().startsWith("T"));
+        // Se recorre desde el final para eliminar sin desplazar índices pendientes.
+        for (int indice = catalogo.size() - 1; indice >= 0; indice--) {
+            Producto producto = catalogo.get(indice);
+            if (producto.getNombre().startsWith("T")) {
+                catalogo.remove(indice);
+            }
+        }
         System.out.println("Tamaño final: " + catalogo.size());
     }
 }

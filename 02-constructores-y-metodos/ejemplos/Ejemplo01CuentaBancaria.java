@@ -28,10 +28,19 @@ public class Ejemplo01CuentaBancaria {
     }
 
     public static void main(String[] args) {
-        CuentaBancaria cuenta = new CuentaBancaria("Nora", 100);
-        cuenta.ingresar(50);
-        System.out.println("Retirada aceptada: " + cuenta.retirar(40));
-        System.out.println("Saldo: " + cuenta.saldo);
+        // Sobrecarga: cada llamada selecciona un constructor diferente.
+        CuentaBancaria cuentaSinSaldo = new CuentaBancaria("Ana");
+        CuentaBancaria cuentaConSaldo = new CuentaBancaria("Nora", 100);
+
+        System.out.println(cuentaSinSaldo.titular + ": " + cuentaSinSaldo.saldo);
+        System.out.println(cuentaConSaldo.titular + ": " + cuentaConSaldo.saldo);
+
+        cuentaConSaldo.ingresar(50);
+        System.out.println("Retirada aceptada: " + cuentaConSaldo.retirar(40));
+        System.out.println("Saldo final: " + cuentaConSaldo.saldo);
+
+        // Un método static se llama mediante el nombre de la clase.
         System.out.println("Cantidad válida: " + CuentaBancaria.cantidadValida(20));
+        System.out.println("Cero es válido: " + CuentaBancaria.cantidadValida(0));
     }
 }

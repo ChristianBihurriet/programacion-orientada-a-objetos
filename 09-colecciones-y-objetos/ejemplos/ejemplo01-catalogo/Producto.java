@@ -1,12 +1,10 @@
-import java.util.Objects;
-
 public class Producto {
     private final String codigo;
     private final String nombre;
 
     public Producto(String codigo, String nombre) {
-        this.codigo = Objects.requireNonNull(codigo);
-        this.nombre = Objects.requireNonNull(nombre);
+        this.codigo = codigo;
+        this.nombre = nombre;
     }
 
     public String getNombre() { return nombre; }
@@ -19,5 +17,5 @@ public class Producto {
     }
 
     @Override
-    public int hashCode() { return Objects.hash(codigo); }
+    public int hashCode() { return codigo.hashCode(); }
 }
