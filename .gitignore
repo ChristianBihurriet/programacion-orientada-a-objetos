@@ -1,4 +1,8 @@
 *.class
+out/
 .vscode/
 .idea/
+.agents/
+.aws/
+.codex/
 

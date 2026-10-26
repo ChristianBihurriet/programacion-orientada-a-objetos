@@ -111,20 +111,53 @@ Para cada tema sigue este proceso:
 5. Explica con tus palabras el nuevo resultado.
 6. Resuelve los ejercicios en orden: esencial, aplicación e integrador.
 
-Cada ejemplo con varias clases vive en su propia carpeta. Desde la raíz:
+Todo el código Java se encuentra bajo `src`. Cada ejemplo y ejercicio tiene un
+paquete propio, de modo que el repositorio completo puede abrirse en VS Code sin
+conflictos entre clases que comparten nombre.
+
+La forma más sencilla de ejecutar un programa es abrir su archivo principal y
+pulsar `Ctrl + F5`. Desde la terminal también se puede compilar un ejemplo con
+varias clases desde la raíz:
 
 ```bash
-cd 05-herencia/ejemplos/ejemplo01-vehiculos
-javac *.java
-java Main
+javac -d out src/tema05/ejemplos/ejemplo01vehiculos/*.java
+java -cp out tema05.ejemplos.ejemplo01vehiculos.Main
 ```
 
-Un ejemplo de un único archivo se ejecuta indicando su nombre:
+Un ejemplo de un único archivo se compila y ejecuta indicando su paquete completo:
 
 ```bash
-javac Ejemplo01Persona.java
-java Ejemplo01Persona
+javac -d out src/tema01/ejemplos/ejemplo01persona/Ejemplo01Persona.java
+java -cp out tema01.ejemplos.ejemplo01persona.Ejemplo01Persona
 ```
+
+La primera línea de cada archivo indica su paquete:
+
+```java
+package tema01.ejercicios.ejercicio02semaforo;
+```
+
+La ruta y el paquete deben coincidir. Todos los archivos de un mismo ejercicio
+declaran el mismo paquete. Esta línea ya está preparada en las plantillas y no debe
+eliminarse al escribir una solución.
+
+### Migrar ejercicios comenzados con la estructura anterior
+
+Las soluciones creadas en las antiguas carpetas de ejercicios no están rastreadas
+por Git, por lo que una actualización del repositorio no las sobrescribe. Después de
+ejecutar `git pull`, el archivo antiguo puede conservarse como copia de seguridad.
+
+Para continuar un ejercicio, abre su nueva plantilla bajo `src`, conserva la primera
+línea `package` y copia debajo las clases de la solución anterior. Por ejemplo:
+
+```java
+package tema01.ejercicios.ejercicio02semaforo;
+
+// Las clases de la solución anterior se copian a partir de aquí.
+```
+
+No copies las carpetas `.git`, `.vscode`, `out` ni archivos `.class`. Cuando la
+solución nueva funcione, el archivo antiguo puede eliminarse manualmente.
 
 ### Cómo interpretar los bloques de código
 
@@ -132,7 +165,7 @@ En este manual se distinguen dos tipos de ejemplos:
 
 - **Bloque ejecutable:** se indica expresamente y contiene todo lo necesario para
   compilarse o ejecutarse en el contexto señalado. Los comandos `bash` anteriores
-  son ejecutables desde las carpetas indicadas. Los ejemplos enlazados del
+  son ejecutables desde la raíz. Los ejemplos enlazados del
   repositorio también son programas completos.
 - **Fragmento ilustrativo:** enseña una idea concreta y puede omitir `main`,
   importaciones, constructores o clases ya explicadas. Salvo que se indique
@@ -145,8 +178,9 @@ anterior. No copies un fragmento aislado esperando que compile si depende de ese
 contexto. Para experimentar directamente, utiliza los archivos enlazados al final de
 cada tema.
 
-`javac` traduce el código a archivos `.class`. `java` inicia la JVM y ejecuta
-`main`. Los `.class` son productos de compilación y están ignorados por Git.
+`javac` traduce el código a archivos `.class`. La opción `-d out` los guarda en la
+carpeta `out` respetando los paquetes. `java` inicia la JVM y ejecuta `main`. Tanto
+`out` como los archivos `.class` están ignorados por Git.
 
 Cuando algo falle, lee el primer mensaje completo: archivo, línea y símbolo. Un
 error de compilación impide construir el programa; una excepción ocurre cuando un
@@ -247,13 +281,13 @@ propio. No conviertas automáticamente cada número o texto en una clase.
 
 ### Ejemplos y ejercicios
 
-[Ejemplo01Persona.java](01-clases-y-objetos/ejemplos/Ejemplo01Persona.java) muestra
-objetos independientes y [Ejemplo02Referencias.java](01-clases-y-objetos/ejemplos/Ejemplo02Referencias.java)
+[Ejemplo01Persona.java](src/tema01/ejemplos/ejemplo01persona/Ejemplo01Persona.java) muestra
+objetos independientes y [Ejemplo02Referencias.java](src/tema01/ejemplos/ejemplo02referencias/Ejemplo02Referencias.java)
 muestra referencias compartidas.
 
-- [Nivel 1 — Ejercicio01Libro](01-clases-y-objetos/ejercicios/Ejercicio01Libro/README.md)
-- [Nivel 2 — Ejercicio02Semaforo](01-clases-y-objetos/ejercicios/Ejercicio02Semaforo/README.md)
-- [Nivel 3 — Ejercicio03Aula](01-clases-y-objetos/ejercicios/Ejercicio03Aula/README.md)
+- [Nivel 1 — Ejercicio01Libro](src/tema01/ejercicios/ejercicio01libro/README.md)
+- [Nivel 2 — Ejercicio02Semaforo](src/tema01/ejercicios/ejercicio02semaforo/README.md)
+- [Nivel 3 — Ejercicio03Aula](src/tema01/ejercicios/ejercicio03aula/README.md)
 
 Al terminar deberías explicar por qué dos semáforos creados con dos llamadas a `new`
 avanzan de forma independiente.
@@ -356,12 +390,12 @@ como atributo crea dos fuentes de verdad. Es mejor calcularlo mediante un métod
 - Olvidar `return` en algún camino.
 - Guardar un resultado que puede derivarse de otros datos.
 
-[Ejemplo01CuentaBancaria.java](02-constructores-y-metodos/ejemplos/Ejemplo01CuentaBancaria.java)
+[Ejemplo01CuentaBancaria.java](src/tema02/ejemplos/ejemplo01cuentabancaria/Ejemplo01CuentaBancaria.java)
 combina constructores, retorno, `void`, sobrecarga y un método estático.
 
-- [Nivel 1 — Ejercicio01Rectangulo](02-constructores-y-metodos/ejercicios/Ejercicio01Rectangulo/README.md)
-- [Nivel 2 — Ejercicio02Reserva](02-constructores-y-metodos/ejercicios/Ejercicio02Reserva/README.md)
-- [Nivel 3 — Ejercicio03Factura](02-constructores-y-metodos/ejercicios/Ejercicio03Factura/README.md)
+- [Nivel 1 — Ejercicio01Rectangulo](src/tema02/ejercicios/ejercicio01rectangulo/README.md)
+- [Nivel 2 — Ejercicio02Reserva](src/tema02/ejercicios/ejercicio02reserva/README.md)
+- [Nivel 3 — Ejercicio03Factura](src/tema02/ejercicios/ejercicio03factura/README.md)
 
 ---
 
@@ -436,12 +470,12 @@ puede devolver `false`. La elección debe ser clara y consistente.
 - Devolver directamente una colección interna mutable.
 - Creer que encapsular consiste únicamente en escribir `private`.
 
-[Ejemplo01CuentaSegura.java](03-encapsulamiento/ejemplos/Ejemplo01CuentaSegura.java)
+[Ejemplo01CuentaSegura.java](src/tema03/ejemplos/ejemplo01cuentasegura/Ejemplo01CuentaSegura.java)
 conserva la invariante `saldo >= 0`.
 
-- [Nivel 1 — Ejercicio01Temperatura](03-encapsulamiento/ejercicios/Ejercicio01Temperatura/README.md)
-- [Nivel 2 — Ejercicio02Inventario](03-encapsulamiento/ejercicios/Ejercicio02Inventario/README.md)
-- [Nivel 3 — Ejercicio03Monedero](03-encapsulamiento/ejercicios/Ejercicio03Monedero/README.md)
+- [Nivel 1 — Ejercicio01Temperatura](src/tema03/ejercicios/ejercicio01temperatura/README.md)
+- [Nivel 2 — Ejercicio02Inventario](src/tema03/ejercicios/ejercicio02inventario/README.md)
+- [Nivel 3 — Ejercicio03Monedero](src/tema03/ejercicios/ejercicio03monedero/README.md)
 
 Antes de programar, escribe la invariante de cada ejercicio en una frase.
 
@@ -570,14 +604,14 @@ el total. Así cada regla queda localizada.
 - Llamar composición a cualquier atributo.
 - Exponer listas mutables y perder el control de las reglas.
 
-Estudia primero la [asociación entre Autor y Libro](04-relaciones-entre-clases/ejemplos/ejemplo00-asociacion-autor-libro/Main.java).
-Después, [Ejemplo01Pedido](04-relaciones-entre-clases/ejemplos/ejemplo01-pedido/Main.java)
-muestra composición y [Ejemplo02Equipo](04-relaciones-entre-clases/ejemplos/ejemplo02-equipo/Main.java)
+Estudia primero la [asociación entre Autor y Libro](src/tema04/ejemplos/ejemplo00asociacionautorlibro/Main.java).
+Después, [Ejemplo01Pedido](src/tema04/ejemplos/ejemplo01pedido/Main.java)
+muestra composición y [Ejemplo02Equipo](src/tema04/ejemplos/ejemplo02equipo/Main.java)
 muestra agregación.
 
-- [Nivel 1 — Ejercicio01AutorLibro](04-relaciones-entre-clases/ejercicios/Ejercicio01AutorLibro/README.md)
-- [Nivel 2 — Ejercicio02Biblioteca](04-relaciones-entre-clases/ejercicios/Ejercicio02Biblioteca/README.md)
-- [Nivel 3 — Ejercicio03CentroEducativo](04-relaciones-entre-clases/ejercicios/Ejercicio03CentroEducativo/README.md)
+- [Nivel 1 — Ejercicio01AutorLibro](src/tema04/ejercicios/ejercicio01autorlibro/README.md)
+- [Nivel 2 — Ejercicio02Biblioteca](src/tema04/ejercicios/ejercicio02biblioteca/README.md)
+- [Nivel 3 — Ejercicio03CentroEducativo](src/tema04/ejercicios/ejercicio03centroeducativo/README.md)
 
 Dibuja primero los objetos y flechas; transforma después cada flecha necesaria en
 una referencia o lista.
@@ -662,12 +696,12 @@ jerarquías profundas sin necesidad.
 - Acceder directamente a atributos privados heredados.
 - Cambiar por error la firma y no sobrescribir realmente.
 
-[Ejemplo01HerenciaVehiculos](05-herencia/ejemplos/ejemplo01-vehiculos/Main.java)
+[Ejemplo01HerenciaVehiculos](src/tema05/ejemplos/ejemplo01vehiculos/Main.java)
 muestra construcción, `super` y sobrescritura.
 
-- [Nivel 1 — Ejercicio01Empleados](05-herencia/ejercicios/Ejercicio01Empleados/README.md)
-- [Nivel 2 — Ejercicio02Publicaciones](05-herencia/ejercicios/Ejercicio02Publicaciones/README.md)
-- [Nivel 3 — Ejercicio03Envios](05-herencia/ejercicios/Ejercicio03Envios/README.md)
+- [Nivel 1 — Ejercicio01Empleados](src/tema05/ejercicios/ejercicio01empleados/README.md)
+- [Nivel 2 — Ejercicio02Publicaciones](src/tema05/ejercicios/ejercicio02publicaciones/README.md)
+- [Nivel 3 — Ejercicio03Envios](src/tema05/ejercicios/ejercicio03envios/README.md)
 
 En cada ejercicio escribe primero la frase «X es un Y». Si no tiene sentido, revisa
 el diseño.
@@ -923,21 +957,21 @@ el comportamiento principal, probablemente falta polimorfismo.
 
 Estúdialos en este orden:
 
-1. [Tipo declarado y tipo real](06-polimorfismo/ejemplos/ejemplo01-animales/Main.java).
-2. [Recorrido polimórfico de figuras](06-polimorfismo/ejemplos/ejemplo02-figuras/Main.java).
-3. [Pattern matching seguro](06-polimorfismo/ejemplos/ejemplo03-pattern-matching/Main.java).
-4. [Array polimórfico](06-polimorfismo/ejemplos/ejemplo04-array-polimorfico/Main.java).
-5. [Parámetro del tipo padre](06-polimorfismo/ejemplos/ejemplo05-parametro-polimorfico/Main.java).
-6. [Upcasting, downcasting y errores de conversión](06-polimorfismo/ejemplos/ejemplo06-conversiones/Main.java).
+1. [Tipo declarado y tipo real](src/tema06/ejemplos/ejemplo01animales/Main.java).
+2. [Recorrido polimórfico de figuras](src/tema06/ejemplos/ejemplo02figuras/Main.java).
+3. [Pattern matching seguro](src/tema06/ejemplos/ejemplo03patternmatching/Main.java).
+4. [Array polimórfico](src/tema06/ejemplos/ejemplo04arraypolimorfico/Main.java).
+5. [Parámetro del tipo padre](src/tema06/ejemplos/ejemplo05parametropolimorfico/Main.java).
+6. [Upcasting, downcasting y errores de conversión](src/tema06/ejemplos/ejemplo06conversiones/Main.java).
 
 En cada llamada anota primero qué verifica el compilador y después qué
 implementación seleccionará la JVM.
 
 ### Ejercicios
 
-- [Nivel 1 — Ejercicio01Instrumentos](06-polimorfismo/ejercicios/Ejercicio01Instrumentos/README.md)
-- [Nivel 2 — Ejercicio02Nominas](06-polimorfismo/ejercicios/Ejercicio02Nominas/README.md)
-- [Nivel 3 — Ejercicio03Notificaciones](06-polimorfismo/ejercicios/Ejercicio03Notificaciones/README.md)
+- [Nivel 1 — Ejercicio01Instrumentos](src/tema06/ejercicios/ejercicio01instrumentos/README.md)
+- [Nivel 2 — Ejercicio02Nominas](src/tema06/ejercicios/ejercicio02nominas/README.md)
+- [Nivel 3 — Ejercicio03Notificaciones](src/tema06/ejercicios/ejercicio03notificaciones/README.md)
 
 Antes de escribir los bucles, comprueba que el método llamado aparezca en el
 supertipo y que cada subtipo lo sobrescriba. El cuerpo del bucle no debería preguntar
@@ -1007,12 +1041,12 @@ clases sin parentesco, una interfaz suele ser mejor.
 Errores habituales: intentar instanciarla, dar cuerpo a un método `abstract`, olvidar
 implementarlo o creer que una clase abstracta no tiene constructor.
 
-[Ejemplo01FigurasAbstractas](07-clases-abstractas/ejemplos/ejemplo01-figuras/Main.java)
+[Ejemplo01FigurasAbstractas](src/tema07/ejemplos/ejemplo01figuras/Main.java)
 muestra construcción, método concreto, método abstracto y polimorfismo.
 
-- [Nivel 1 — Ejercicio01Electrodomesticos](07-clases-abstractas/ejercicios/Ejercicio01Electrodomesticos/README.md)
-- [Nivel 2 — Ejercicio02Personajes](07-clases-abstractas/ejercicios/Ejercicio02Personajes/README.md)
-- [Nivel 3 — Ejercicio03Tarifas](07-clases-abstractas/ejercicios/Ejercicio03Tarifas/README.md)
+- [Nivel 1 — Ejercicio01Electrodomesticos](src/tema07/ejercicios/ejercicio01electrodomesticos/README.md)
+- [Nivel 2 — Ejercicio02Personajes](src/tema07/ejercicios/ejercicio02personajes/README.md)
+- [Nivel 3 — Ejercicio03Tarifas](src/tema07/ejercicios/ejercicio03tarifas/README.md)
 
 Separa antes de programar lo común de lo que cada subtipo debe concretar.
 
@@ -1291,17 +1325,17 @@ No son excluyentes: una clase abstracta también puede implementar interfaces.
 - Llamar a un método `static` como si perteneciera al objeto.
 - Añadir métodos `default` antes de que exista comportamiento común real.
 
-[Ejemplo01Pagos](08-interfaces/ejemplos/ejemplo01-pagos/Main.java) muestra dos
-implementaciones polimórficas. [Ejemplo02Capacidades](08-interfaces/ejemplos/ejemplo02-capacidades/Main.java)
+[Ejemplo01Pagos](src/tema08/ejemplos/ejemplo01pagos/Main.java) muestra dos
+implementaciones polimórficas. [Ejemplo02Capacidades](src/tema08/ejemplos/ejemplo02capacidades/Main.java)
 muestra implementación múltiple, `default` y `static`.
 
 Lee primero el ejemplo de pagos, que contiene el uso básico del contrato. Estudia
 después el ejemplo de capacidades, que combina varias interfaces y características
 avanzadas.
 
-- [Nivel 1 — Ejercicio01Reproducibles](08-interfaces/ejercicios/Ejercicio01Reproducibles/README.md)
-- [Nivel 2 — Ejercicio02Exportadores](08-interfaces/ejercicios/Ejercicio02Exportadores/README.md)
-- [Nivel 3 — Ejercicio03Dispositivos](08-interfaces/ejercicios/Ejercicio03Dispositivos/README.md)
+- [Nivel 1 — Ejercicio01Reproducibles](src/tema08/ejercicios/ejercicio01reproducibles/README.md)
+- [Nivel 2 — Ejercicio02Exportadores](src/tema08/ejercicios/ejercicio02exportadores/README.md)
+- [Nivel 3 — Ejercicio03Dispositivos](src/tema08/ejercicios/ejercicio03dispositivos/README.md)
 
 Invoca las operaciones del contrato sin preguntar por la clase concreta recibida.
 
@@ -1798,23 +1832,23 @@ Ampliaciones:
 
 Sigue esta progresión práctica:
 
-1. [Arrays frente a ArrayList](09-colecciones-y-objetos/ejemplos/paso01-arrays-arraylist/Main.java).
-2. [Operaciones básicas de List](09-colecciones-y-objetos/ejemplos/paso02-operaciones-basicas/Main.java).
-3. [Recorridos con for y for-each](09-colecciones-y-objetos/ejemplos/paso03-recorridos/Main.java).
-4. [Lista de objetos propios](09-colecciones-y-objetos/ejemplos/paso04-lista-objetos/Main.java).
-5. [Búsqueda manual por atributos](09-colecciones-y-objetos/ejemplos/paso05-busqueda-manual/Main.java).
-6. [Clase que gestiona su colección](09-colecciones-y-objetos/ejemplos/paso06-gestor-coleccion/Main.java).
-7. [Eliminación segura con Iterator](09-colecciones-y-objetos/ejemplos/paso07-eliminacion-segura/Main.java).
+1. [Arrays frente a ArrayList](src/tema09/ejemplos/paso01arraysarraylist/Main.java).
+2. [Operaciones básicas de List](src/tema09/ejemplos/paso02operacionesbasicas/Main.java).
+3. [Recorridos con for y for-each](src/tema09/ejemplos/paso03recorridos/Main.java).
+4. [Lista de objetos propios](src/tema09/ejemplos/paso04listaobjetos/Main.java).
+5. [Búsqueda manual por atributos](src/tema09/ejemplos/paso05busquedamanual/Main.java).
+6. [Clase que gestiona su colección](src/tema09/ejemplos/paso06gestorcoleccion/Main.java).
+7. [Eliminación segura con Iterator](src/tema09/ejemplos/paso07eliminacionsegura/Main.java).
 
 Después de completar esos pasos, continúa con los dos ejemplos existentes:
 
-[Ejemplo01Catalogo](09-colecciones-y-objetos/ejemplos/ejemplo01-catalogo/Main.java)
-muestra listas, igualdad y borrado seguro. [Ejemplo02Tareas](09-colecciones-y-objetos/ejemplos/ejemplo02-tareas/Main.java)
+[Ejemplo01Catalogo](src/tema09/ejemplos/ejemplo01catalogo/Main.java)
+muestra listas, igualdad y borrado seguro. [Ejemplo02Tareas](src/tema09/ejemplos/ejemplo02tareas/Main.java)
 combina colecciones con referencias a interfaz.
 
-- [Nivel 1 — Ejercicio01ListaCompra](09-colecciones-y-objetos/ejercicios/Ejercicio01ListaCompra/README.md)
-- [Nivel 2 — Ejercicio02Agenda](09-colecciones-y-objetos/ejercicios/Ejercicio02Agenda/README.md)
-- [Nivel 3 — Ejercicio03Flota](09-colecciones-y-objetos/ejercicios/Ejercicio03Flota/README.md)
+- [Nivel 1 — Ejercicio01ListaCompra](src/tema09/ejercicios/ejercicio01listacompra/README.md)
+- [Nivel 2 — Ejercicio02Agenda](src/tema09/ejercicios/ejercicio02agenda/README.md)
+- [Nivel 3 — Ejercicio03Flota](src/tema09/ejercicios/ejercicio03flota/README.md)
 
 Prueba siempre colección vacía, búsqueda existente e inexistente, duplicado,
 eliminación y acceso a los límites. Una colección funciona correctamente no solo
@@ -1845,9 +1879,9 @@ El orden de los efectos también importa. Una compra debería validar carrito y 
 solicitar el pago y solo después descontar existencias. Un rechazo no debe dejar el
 sistema cambiado a medias.
 
-- [Ejercicio01BibliotecaMunicipal](10-ejercicios-integradores/Ejercicio01BibliotecaMunicipal/README.md): préstamos, usuarios, ejemplares y fechas.
-- [Ejercicio02TiendaOnline](10-ejercicios-integradores/Ejercicio02TiendaOnline/README.md): productos, carrito, descuentos y pagos.
-- [Ejercicio03GestionAcademica](10-ejercicios-integradores/Ejercicio03GestionAcademica/README.md): alumnado, módulos, matrículas y notas.
+- [Ejercicio01BibliotecaMunicipal](src/tema10/ejercicios/ejercicio01bibliotecamunicipal/README.md): préstamos, usuarios, ejemplares y fechas.
+- [Ejercicio02TiendaOnline](src/tema10/ejercicios/ejercicio02tiendaonline/README.md): productos, carrito, descuentos y pagos.
+- [Ejercicio03GestionAcademica](src/tema10/ejercicios/ejercicio03gestionacademica/README.md): alumnado, módulos, matrículas y notas.
 
 Implementa una regla, demuéstrala con un caso pequeño y continúa con la siguiente.
 
