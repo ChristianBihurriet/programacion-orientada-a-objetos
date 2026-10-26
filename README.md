@@ -1,10 +1,19 @@
 # Programación Orientada a Objetos con Java 21 ☕
 
+**Java 21 · Sin Maven ni dependencias externas**
+
+> 📚 **Material didáctico**
+>
+> **Profesor y autor:** Christian Bihurriet
+> **Centro educativo:** CESUR
+>
+> Repositorio de material docente elaborado para la enseñanza de la Programación
+> Orientada a Objetos con Java.
+
 Este repositorio es un manual práctico de Programación Orientada a Objetos (POO)
-para alumnado de primero y segundo de Desarrollo de Aplicaciones Multiplataforma.
-Está pensado especialmente para quien ya conoce variables, condicionales y bucles,
-pero todavía encuentra difícil decidir qué clases crear, dónde guardar los datos o
-qué objeto debe realizar cada operación.
+para alumnado que ya conoce variables, condicionales y bucles, pero todavía
+encuentra difícil decidir qué clases crear, dónde guardar los datos o qué objeto
+debe realizar cada operación.
 
 Aprender POO no consiste en memorizar `class`, `private`, `extends` o `interface`.
 Consiste en aprender a repartir responsabilidades:
@@ -21,23 +30,34 @@ Gradle ni bibliotecas externas.
 
 ## Índice
 
-1. [Cómo utilizar el repositorio](#cómo-utilizar-el-repositorio)
-2. [Clases y objetos](#1-clases-y-objetos)
-3. [Constructores y métodos](#2-constructores-y-métodos)
-4. [Encapsulamiento](#3-encapsulamiento)
-5. [Relaciones entre clases](#4-relaciones-entre-clases)
-6. [Herencia](#5-herencia)
-7. [Polimorfismo](#6-polimorfismo)
-8. [Clases abstractas](#7-clases-abstractas)
-9. [Interfaces](#8-interfaces)
-10. [Colecciones y objetos](#9-colecciones-y-objetos)
-11. [Ejercicios integradores](#10-ejercicios-integradores)
-12. [Comparaciones rápidas](#comparaciones-rápidas)
+- [Introducción: pensar en objetos](#introducción-pensar-en-objetos)
+- [Requisitos](#requisitos)
+- [Cómo utilizar el repositorio](#cómo-utilizar-el-repositorio)
+
+### Temario
+
+1. [Clases y objetos](#1-clases-y-objetos)
+2. [Constructores y métodos](#2-constructores-y-métodos)
+3. [Encapsulamiento](#3-encapsulamiento)
+4. [Relaciones entre clases](#4-relaciones-entre-clases)
+5. [Herencia](#5-herencia)
+6. [Polimorfismo](#6-polimorfismo)
+7. [Clases abstractas](#7-clases-abstractas)
+8. [Interfaces](#8-interfaces)
+9. [Colecciones y objetos](#9-colecciones-y-objetos)
+10. [Ejercicios integradores](#10-ejercicios-integradores)
+
+### Consulta rápida
+
+- [Comparaciones rápidas](#comparaciones-rápidas)
+- [Método recomendado para resolver problemas](#método-recomendado-para-resolver-problemas)
+- [Lista de comprobación final](#lista-de-comprobación-final)
+- [Sobre este repositorio](#sobre-este-repositorio)
 
 ## Introducción: pensar en objetos
 
-En programación estructurada podemos guardar datos en variables y escribir
-funciones que trabajan con ellos. El enfoque es válido, pero una aplicación grande
+En programación estructurada, los datos se pueden guardar en variables y procesar
+mediante funciones. El enfoque es válido, pero una aplicación grande
 puede acabar con muchas funciones capaces de modificar cualquier dato. Entonces es
 difícil saber quién protege cada regla.
 
@@ -138,7 +158,7 @@ programa ya compilado encuentra una situación que no puede continuar.
 
 ### El problema: datos que pertenecen juntos
 
-Para guardar tres alumnos con variables sueltas necesitaríamos `nombre1`, `edad1`,
+Para guardar tres alumnos con variables sueltas harían falta `nombre1`, `edad1`,
 `nota1`, después `nombre2`, etc. Nada garantiza que los datos sigan emparejados. Una
 clase permite describir qué datos y comportamientos forman el concepto «alumno».
 
@@ -166,7 +186,7 @@ omar.nombre = "Omar";
 omar.nota = 4.5;
 ```
 
-La clase es el molde; `new` crea los objetos. Podemos imaginar la memoria así:
+La clase es el molde; `new` crea los objetos. La memoria puede representarse así:
 
 ```text
 ana  ───► Alumno { nombre: "Ana",  nota: 7.5 }
@@ -245,7 +265,7 @@ avanzan de forma independiente.
 ### El problema: objetos incompletos
 
 Un objeto recién creado recibe valores predeterminados (`0`, `false` o `null`). Si
-después debemos asignar cinco atributos manualmente, podemos olvidar alguno. Un
+después hay que asignar cinco atributos manualmente, es posible olvidar alguno. Un
 **constructor** recibe los datos necesarios y prepara el objeto al crearlo.
 
 ```java
@@ -470,15 +490,15 @@ classDiagram
     Servicio ..> Impresora : usa
 ```
 
-No toda relación necesita navegación en ambas direcciones. Si solo queremos conocer
+No toda relación necesita navegación en ambas direcciones. Si solo se necesita conocer
 el autor de un libro, basta `Libro -> Autor`. Añadir también los libros al autor
 obliga a mantener dos lados sincronizados sin aportar utilidad.
 
 ### Introducción mínima a `ArrayList`
 
-Para representar una relación «uno a muchos» necesitamos guardar una cantidad de
-objetos que no siempre conocemos de antemano. Un array obliga a decidir su tamaño al
-crearlo. Un `ArrayList`, en cambio, puede crecer a medida que añadimos elementos.
+Para representar una relación «uno a muchos» es necesario guardar una cantidad de
+objetos que no siempre se conoce de antemano. Un array obliga a decidir su tamaño al
+crearlo. Un `ArrayList`, en cambio, puede crecer a medida que se añaden elementos.
 
 Antes de usarlo hay que importar `List` y `ArrayList`:
 
@@ -487,7 +507,7 @@ import java.util.ArrayList;
 import java.util.List;
 ```
 
-Podemos crear una lista vacía y añadir objetos así:
+Una lista vacía se puede crear y completar así:
 
 > **Fragmento ilustrativo:** presupone que la clase `LineaPedido` ya existe y posee
 > el constructor mostrado.
@@ -514,7 +534,7 @@ estudiarán las listas, sus operaciones y los recorridos con detalle.
 
 ### Uno a muchos con `List`
 
-Ya podemos utilizar esa herramienta para que un pedido conserve sus líneas:
+Esta herramienta permite que un pedido conserve sus líneas:
 
 > **Fragmento ilustrativo:** muestra únicamente la relación entre `Pedido` y
 > `LineaPedido`; no incluye la definición de `LineaPedido` ni un método `main`.
@@ -658,8 +678,8 @@ el diseño.
 
 ### El problema: procesar tipos distintos del mismo modo
 
-En el tema anterior vimos que `Perro` y `Gato` pueden heredar de `Animal`. Ahora
-queremos recorrerlos, pasarlos a métodos y hacerlos trabajar sin escribir un caso
+El tema anterior mostró que `Perro` y `Gato` pueden heredar de `Animal`. El siguiente
+objetivo es recorrerlos, pasarlos a métodos y hacerlos trabajar sin escribir un caso
 especial para cada subtipo.
 
 Una solución frágil sería guardar el tipo en un texto y preguntar continuamente:
@@ -678,7 +698,7 @@ cada objeto sabe cómo responder.
 
 ### Paso 1: una jerarquía con comportamiento sobrescrito
 
-Partimos de una superclase concreta y dos subclases:
+El punto de partida es una superclase concreta y dos subclases:
 
 > **Fragmentos acumulativos:** la jerarquía siguiente es el contexto de todos los
 > bloques del tema 6. Las llamadas posteriores suponen que estas clases ya están
@@ -710,7 +730,7 @@ class Gato extends Animal {
 }
 ```
 
-Todavía podemos usar cada tipo concreto de la forma habitual:
+Cada tipo concreto todavía puede utilizarse de la forma habitual:
 
 ```java
 Perro perro = new Perro();
@@ -720,7 +740,7 @@ perro.emitirSonido(); // Guau
 gato.emitirSonido();  // Miau
 ```
 
-Aquí ya existe sobrescritura, pero aún no estamos aprovechando una referencia común.
+Aquí ya existe sobrescritura, pero aún no se aprovecha una referencia común.
 
 ### Paso 2: upcasting y dos tipos para una misma expresión
 
@@ -742,8 +762,8 @@ Conviene distinguir siempre:
 | Referencia | `animal` | Permite acceder al objeto |
 | Objeto | `new Perro()` | Conserva el estado y comportamiento reales |
 
-El objeto no se transforma ni pierde su parte de perro. Solo lo estamos observando
-a través de una referencia más general.
+El objeto no se transforma ni pierde su parte de perro. Solo se observa a través de
+una referencia más general.
 
 ### Paso 3: enlace dinámico
 
@@ -849,8 +869,8 @@ Aunque el objeto real sea un perro, `moverCola()` no forma parte del tipo declar
 depender de operaciones comunes.
 
 Si esa acción debe estar disponible para todos, quizá falte incorporarla al diseño
-común. Si es exclusivamente canina, solo debe usarse cuando de verdad necesitamos un
-`Perro`.
+común. Si es exclusivamente canina, solo debe usarse cuando el caso requiera
+realmente un `Perro`.
 
 ### Downcasting e `instanceof`
 
@@ -1006,8 +1026,8 @@ Un teléfono y un robot pueden ser recargables sin que uno deba heredar del otro
 Una interfaz permite expresar la capacidad «se puede recargar» sin imponer una
 superclase común.
 
-Este tema está dividido en dos partes. Primero aprenderemos lo imprescindible:
-declarar, implementar y utilizar un contrato. Después veremos características
+Este tema está dividido en dos partes. La primera presenta lo imprescindible:
+declarar, implementar y utilizar un contrato. La segunda explica características
 avanzadas como implementación múltiple, métodos `default` y métodos `static`.
 
 > **Fragmentos acumulativos:** los bloques del tema 8 amplían progresivamente las
@@ -1134,7 +1154,7 @@ Recargable recargable = new Robot();
 Movible movible = new Robot();
 ```
 
-En un programa real normalmente compartiríamos el mismo objeto:
+En un programa real normalmente se compartiría el mismo objeto:
 
 ```java
 Robot robot = new Robot();
@@ -1291,7 +1311,7 @@ Invoca las operaciones del contrato sin preguntar por la clase concreta recibida
 
 ### El problema: trabajar con cantidades variables
 
-Un array tiene una longitud fija desde su creación. Es apropiado cuando sabemos que
+Un array tiene una longitud fija desde su creación. Es apropiado cuando se sabe que
 siempre habrá, por ejemplo, doce meses o cuatro ruedas. Una agenda, una biblioteca o
 una flota necesitan añadir y retirar objetos durante la ejecución.
 
@@ -1345,7 +1365,7 @@ Java proporciona varias estructuras. No existe una que sea la mejor para todo:
 framework de colecciones, pero no extiende `Collection` porque guarda parejas de
 clave y valor.
 
-En los ejercicios de este tema trabajaremos principalmente con `List` y
+Los ejercicios de este tema trabajan principalmente con `List` y
 `ArrayList`. Al final se incluye una introducción a `Set` y `Map` para saber cuándo
 existen alternativas mejores.
 
@@ -1416,7 +1436,7 @@ La lista guarda referencias. No crea copias de los objetos:
 productos.add(teclado);
 ```
 
-Si añadimos dos veces `teclado`, ambas posiciones apuntan al mismo objeto. `List`
+Si se añade dos veces `teclado`, ambas posiciones apuntan al mismo objeto. `List`
 permite elementos repetidos.
 
 ### Paso 4: consultar tamaño, posiciones y estado
@@ -1449,7 +1469,7 @@ No confundas `size()` con el último índice: este es `size() - 1`.
 
 #### Recorrido `for-each`
 
-Es la opción más clara si solo necesitamos cada elemento:
+Es la opción más clara si solo se necesita cada elemento:
 
 ```java
 for (Producto producto : productos) {
@@ -1590,7 +1610,7 @@ for (Producto producto : productos) {
 
 Puede producir `ConcurrentModificationException`. Una opción tradicional consiste
 en recorrer los índices desde el final. Así, los desplazamientos solo afectan a
-posiciones que ya hemos visitado:
+posiciones que ya se han visitado:
 
 ```java
 for (int indice = productos.size() - 1; indice >= 0; indice--) {
@@ -1603,7 +1623,7 @@ for (int indice = productos.size() - 1; indice >= 0; indice--) {
 
 #### Eliminación segura con `Iterator`
 
-Cuando necesitamos más control durante el recorrido, usamos un iterador. Esta es una
+Cuando se necesita más control durante el recorrido, se utiliza un iterador. Esta es una
 herramienta posterior a las búsquedas y se introduce aquí porque su utilidad
 principal en este tema es eliminar de forma segura:
 
@@ -1625,7 +1645,7 @@ El orden es importante:
 2. `next()` avanza y devuelve ese elemento.
 3. `iterador.remove()` elimina de forma segura el último elemento devuelto.
 
-Si solo queremos eliminar un elemento, otra solución sencilla es buscarlo primero y
+Si solo se quiere eliminar un elemento, otra solución sencilla es buscarlo primero y
 borrarlo después de terminar el bucle.
 
 ### Paso 9: ordenar
@@ -1748,7 +1768,7 @@ No elijas por costumbre: elige según las operaciones principales del problema.
 - Usar `<= lista.size()` en un recorrido.
 - Confundir capacidad interna de `ArrayList` con su `size()`.
 - Usar un tipo genérico crudo como `List lista`.
-- Suponer que `contains` compara los atributos que queremos sin definir `equals`.
+- Suponer que `contains` compara los atributos deseados sin definir `equals`.
 - Sobrescribir `equals` sin `hashCode`.
 - Eliminar desde la lista durante un `for-each`.
 - Confundir `remove(indice)` con `remove(elemento)`.
@@ -1877,3 +1897,11 @@ Una solución orientada a objetos es buena cuando sus nombres cuentan el problem
 sus responsabilidades están localizadas y cambiar una regla no obliga a recorrer
 todo el programa. El objetivo no es escribir más clases, sino que cada parte tenga
 una razón clara para existir y cambiar.
+
+## Sobre este repositorio
+
+Este proyecto forma parte de una colección de recursos educativos desarrollados
+por Christian Bihurriet para sus clases de programación.
+
+El código y las explicaciones están adaptados deliberadamente al nivel del alumnado
+y priorizan la claridad didáctica sobre la complejidad técnica.
